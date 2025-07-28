@@ -16,11 +16,44 @@
         "documentation": {}
     },
     {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "index",
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def index():\n    return render_template('index.html')\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "peekOfCode": "def index():\n    return render_template('index.html')\n@app.route('/notes/', methods=['GET', 'POST'])\ndef notes():\n    if request.method == 'POST':\n        title = request.form.get('title', '').strip()\n        text = request.form.get('text', '').strip()\n        if title and text:\n            notes_storage[title] = text\n        return redirect(url_for('notes'))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "notes",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def notes():\n    if request.method == 'POST':\n        title = request.form.get('title', '').strip()\n        text = request.form.get('text', '').strip()\n        if title and text:\n            notes_storage[title] = text\n        return redirect(url_for('notes'))\n    return render_template('notes.html', notes=notes_storage)\nif __name__ == '__main__':\n    app.run(debug=True)",
         "detail": "app",
         "documentation": {}
     },
@@ -29,7 +62,16 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef index():\n    return render_template('index.html')\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "peekOfCode": "app = Flask(__name__)\nnotes_storage = {}\n@app.route('/')\ndef index():\n    return render_template('index.html')\n@app.route('/notes/', methods=['GET', 'POST'])\ndef notes():\n    if request.method == 'POST':\n        title = request.form.get('title', '').strip()\n        text = request.form.get('text', '').strip()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "notes_storage",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "notes_storage = {}\n@app.route('/')\ndef index():\n    return render_template('index.html')\n@app.route('/notes/', methods=['GET', 'POST'])\ndef notes():\n    if request.method == 'POST':\n        title = request.form.get('title', '').strip()\n        text = request.form.get('text', '').strip()\n        if title and text:",
         "detail": "app",
         "documentation": {}
     }

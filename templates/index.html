@@ -1,3 +1,4 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -24,6 +25,7 @@
           width: 80%;
           max-width: 500px;
           position: relative;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .close {
           color: #aaa;
@@ -31,29 +33,76 @@
           font-size: 28px;
           font-weight: bold;
           cursor: pointer;
+          transition: color 0.3s ease;
         }
         .close:hover,
         .close:focus {
-          color: black;
+          color: #2a5d66;
           text-decoration: none;
         }
         nav ul {
           list-style: none;
           padding-left: 0;
           display: flex;
-          gap: 15px;
+          gap: 20px;
         }
         nav ul li {
           display: inline;
         }
         nav ul li a {
           text-decoration: none;
-          color: #2a52be;
-          font-weight: bold;
+          color: #2a5d66;
+          font-weight: 700;
+          font-size: 1.1em;
+          transition: color 0.3s ease;
           cursor: pointer;
         }
         nav ul li a:hover {
+          color: #c94f4f;
           text-decoration: underline;
+        }
+        section#schedule {
+          margin-top: 40px;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        thead tr {
+          background: linear-gradient(90deg, #2a5d66, #426c77);
+          color: #ffffff;
+          font-weight: 700;
+        }
+        th, td {
+          border: 2px solid #2a5d66;
+          padding: 12px 10px;
+          text-align: center;
+          font-size: 0.95em;
+        }
+        tbody tr:nth-child(even) {
+          background-color: #f5f9f7;
+        }
+        tbody tr:nth-child(odd) {
+          background-color: #e6f0ea;
+        }
+        tbody tr:last-child td {
+          background: #c6d8d0;
+          font-weight: 700;
+          font-style: italic;
+          color: #244b4a;
+        }
+        footer {
+          margin-top: 50px;
+          padding: 15px 0;
+          border-top: 1px solid #ccc;
+          text-align: center;
+          font-size: 0.9em;
+          color: #666;
+          font-style: italic;
         }
     </style>
 </head>
@@ -67,6 +116,7 @@
             <li><a href="#" id="link-skills">Навыки</a></li>
             <li><a href="#" id="link-achievements">Достижения</a></li>
             <li><a href="#" id="link-schedule">График обучения</a></li>
+            <li><a href="{{ url_for('notes') }}">Дневник программиста</a></li>
         </ul>
     </nav>
 </header>
@@ -76,11 +126,11 @@
   <div class="modal-content">
     <span class="close" data-target="modal-skills">&times;</span>
     <h2>Навыки</h2>
-    <p>Мои навыки<br>
-       - Опыт программирования на Python.<br>
-       - Работа с системами контроля версий.<br>
-       - Знание Linux и многопоточности.<br>
-       - Разработка на Flask и Django.</p>
+    <p>Мои компетенции:<br>
+       - Продвинутый опыт программирования на Python.<br>
+       - Уверенная работа с системами контроля версий.<br>
+       - Глубокое понимание Linux и концепций многопоточности.<br>
+       - Разработка приложений с использованием Flask и Django.</p>
   </div>
 </div>
 
@@ -89,11 +139,11 @@
   <div class="modal-content">
     <span class="close" data-target="modal-achievements">&times;</span>
     <h2>Достижения</h2>
-    <p>Мои достижения:<br>
-       - Успешное создание нескольких проектов на Flask.<br>
-       - Внедрение систем автоматизации.<br>
-       - Завершение курсов по алгоритмам и структурам данных.<br>
-       - Экспертное владение Git.</p>
+    <p>Ключевые достижения:<br>
+       - Успешная реализация нескольких проектов на Flask.<br>
+       - Автоматизация рабочих процессов.<br>
+       - Освоение алгоритмов и структур данных на продвинутом уровне.<br>
+       - Профессиональное владение системой Git.</p>
   </div>
 </div>
 
@@ -102,9 +152,9 @@
   <div class="modal-content">
     <span class="close" data-target="modal-schedule">&times;</span>
     <h2>График обучения</h2>
-    <p>График обучения.<br>
-       05.06.2025	27.11.2025	Теоретическое обучение
- 	   28.11.2025	04.12.2025	Государственные экзамены</p>
+    <p>План развития:<br>
+       05.06.2025 — 27.11.2025 — Теоретическая подготовка<br>
+       28.11.2025 — 04.12.2025 — Государственные экзамены</p>
   </div>
 </div>
 
@@ -121,10 +171,12 @@
                 <th>Расширенные возможности Python</th>
                 <th>Фреймворк Flask</th>
                 <th>Фреймворк Django</th>
+                <th>Многопоточность и параллелизм</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td>100 из 100</td>
                 <td>100 из 100</td>
                 <td>100 из 100</td>
                 <td>100 из 100</td>
@@ -139,24 +191,26 @@
                 <td>Git освоен на практике</td>
                 <td>Понятия процессов и потоков изучены</td>
                 <td>Основные алгоритмы и структуры выучены</td>
-                <td>Работа с БД от теории к практике</td>
+                <td>Работа с базами данных от теории к практике</td>
                 <td>Изучены расширенные техники Python</td>
-                <td>Создано несколько Flask приложений</td>
+                <td>Создано несколько Flask-приложений</td>
                 <td>Django базовая настройка изучена</td>
+                <td>Анализ параллельных вычислений проведён</td>
             </tr>
             <tr>
-                <td>Рекомендовано делать проекты</td>
-                <td>Использовать ветки Git</td>
+                <td>Рекомендовано создавать проекты</td>
+                <td>Активно использовать ветвление в Git</td>
                 <td>Практиковать многопоточность</td>
                 <td>Решать задачи по алгоритмам</td>
-                <td>Создавать SQL-запросы</td>
-                <td>Смотреть документацию</td>
+                <td>Проектировать и писать SQL-запросы</td>
+                <td>Изучать официальную документацию</td>
                 <td>Работать с REST API</td>
-                <td>Изучать admin и ORM</td>
+                <td>Осваивать админку и ORM</td>
+                <td>Изучать синхронизацию потоков</td>
             </tr>
             <tr>
-                <td colspan="8" style="text-align:center;">
-                    Продолжать развиваться и применять знания на практике
+                <td colspan="9" style="text-align:center;">
+                    Постоянно совершенствоваться и применять приобретённые знания на практике
                 </td>
             </tr>
         </tbody>

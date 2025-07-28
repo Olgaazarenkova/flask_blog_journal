@@ -1,0 +1,115 @@
+<!-- templates/notes.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Дневник программиста</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <style>
+        form {
+            background: #d7e0d5;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1f4448;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #2a5d66;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+        textarea {
+            min-height: 100px;
+        }
+        button[type="submit"] {
+            background-color: #2a5d66;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #c94f4f;
+        }
+        .note {
+            background: #f0f7f4;
+            border: 1.8px solid #2a5d66;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        .note-title {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #244b4a;
+        }
+        .note-text {
+            white-space: pre-wrap;
+            color: #3c3c3c;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Дневник программиста</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Главная</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section>
+    <p>Здесь я веду записи о ходе обучения, важные заметки и рефлексии.</p>
+
+    <form method="post" action="{{ url_for('notes') }}">
+        <label for="title">Заголовок записи</label>
+        <input type="text" id="title" name="title" required maxlength="100" placeholder="Введите заголовок" />
+
+        <label for="text">Текст записи</label>
+        <textarea id="text" name="text" required placeholder="Введите текст записи"></textarea>
+
+        <button type="submit">Добавить запись</button>
+    </form>
+
+    {% if notes %}
+        <div class="notes-list">
+            {% for title, text in notes.items() %}
+                <article class="note">
+                    <div class="note-title">{{ title }}</div>
+                    <div class="note-text">{{ text }}</div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Записей пока нет.</p>
+    {% endif %}
+</section>
+
+<footer>
+    <p>© 2025 Мой блог о Flask</p>
+</footer>
+
+</body>
+</html>
