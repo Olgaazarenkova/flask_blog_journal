@@ -1,0 +1,79 @@
+/* Фон и общий шрифт */
+body {
+    background: linear-gradient(to right, #a0c1b8, #f6f4e6);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333333;
+    margin: 0;
+    padding: 0 20px;
+}
+
+/* Заголовки */
+h1, h2 {
+    font-weight: 700;
+}
+
+/* Навигация */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #2a5d66;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+    color: #c94f4f;
+}
+
+/* Секции */
+section {
+    margin-top: 30px;
+}
+
+/* Стили для списка */
+ul li {
+    line-height: 1.6;
+}
+
+/* Изображение */
+img {
+    width: 150px;
+    display: block;
+    margin-top: 15px;
+}
+
+/* Таблица */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 2px solid #2a5d66;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #a0c1b8;
+    color: white;
+}
+
+/* Футер */
+footer {
+    margin-top: 50px;
+    padding: 15px 0;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+}

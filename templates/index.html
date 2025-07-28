@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Мои достижения и навыки</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <style>
+        /* Стили для модальных окон */
+        .modal {
+          display: none; /* Скрыто по умолчанию */
+          position: fixed;
+          z-index: 1000;
+          left: 0; top: 0;
+          width: 100%; height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+          background-color: #fff;
+          margin: 15% auto;
+          padding: 20px;
+          border-radius: 5px;
+          width: 80%;
+          max-width: 500px;
+          position: relative;
+        }
+        .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+          color: black;
+          text-decoration: none;
+        }
+        nav ul {
+          list-style: none;
+          padding-left: 0;
+          display: flex;
+          gap: 15px;
+        }
+        nav ul li {
+          display: inline;
+        }
+        nav ul li a {
+          text-decoration: none;
+          color: #2a52be;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        nav ul li a:hover {
+          text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Добро пожаловать в мой блог</h1>
+    <nav>
+        <ul>
+            <li><a href="#" id="link-skills">Навыки</a></li>
+            <li><a href="#" id="link-achievements">Достижения</a></li>
+            <li><a href="#" id="link-schedule">График обучения</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Модальное окно для Навыков -->
+<div id="modal-skills" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal-skills">&times;</span>
+    <h2>Навыки</h2>
+    <p>Мои навыки<br>
+       - Опыт программирования на Python.<br>
+       - Работа с системами контроля версий.<br>
+       - Знание Linux и многопоточности.<br>
+       - Разработка на Flask и Django.</p>
+  </div>
+</div>
+
+<!-- Модальное окно для Достижений -->
+<div id="modal-achievements" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal-achievements">&times;</span>
+    <h2>Достижения</h2>
+    <p>Мои достижения:<br>
+       - Успешное создание нескольких проектов на Flask.<br>
+       - Внедрение систем автоматизации.<br>
+       - Завершение курсов по алгоритмам и структурам данных.<br>
+       - Экспертное владение Git.</p>
+  </div>
+</div>
+
+<!-- Модальное окно для Графика обучения -->
+<div id="modal-schedule" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal-schedule">&times;</span>
+    <h2>График обучения</h2>
+    <p>График обучения.<br>
+       05.06.2025	27.11.2025	Теоретическое обучение
+ 	   28.11.2025	04.12.2025	Государственные экзамены</p>
+  </div>
+</div>
+
+<section id="schedule">
+    <h2>Таблица выполнения обучения</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Основы языка программирования Python</th>
+                <th>Система контроля версий Git</th>
+                <th>ОС Linux: основы процессов и потоков</th>
+                <th>Алгоритмы и структуры данных</th>
+                <th>Базы данных</th>
+                <th>Расширенные возможности Python</th>
+                <th>Фреймворк Flask</th>
+                <th>Фреймворк Django</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>100 из 100</td>
+                <td>100 из 100</td>
+                <td>100 из 100</td>
+                <td>100 из 100</td>
+                <td>100 из 100</td>
+                <td>100 из 100</td>
+                <td>100 из 100</td>
+                <td>100 из 100</td>
+            </tr>
+            <tr>
+                <td>Вся база Python освоена</td>
+                <td>Git освоен на практике</td>
+                <td>Понятия процессов и потоков изучены</td>
+                <td>Основные алгоритмы и структуры выучены</td>
+                <td>Работа с БД от теории к практике</td>
+                <td>Изучены расширенные техники Python</td>
+                <td>Создано несколько Flask приложений</td>
+                <td>Django базовая настройка изучена</td>
+            </tr>
+            <tr>
+                <td>Рекомендовано делать проекты</td>
+                <td>Использовать ветки Git</td>
+                <td>Практиковать многопоточность</td>
+                <td>Решать задачи по алгоритмам</td>
+                <td>Создавать SQL-запросы</td>
+                <td>Смотреть документацию</td>
+                <td>Работать с REST API</td>
+                <td>Изучать admin и ORM</td>
+            </tr>
+            <tr>
+                <td colspan="8" style="text-align:center;">
+                    Продолжать развиваться и применять знания на практике
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer>
+    <p>© 2025 Мой блог о Flask</p>
+</footer>
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('link-skills').addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal('modal-skills');
+    });
+    document.getElementById('link-achievements').addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal('modal-achievements');
+    });
+    document.getElementById('link-schedule').addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal('modal-schedule');
+    });
+
+    document.querySelectorAll('.close').forEach(function(elem) {
+      elem.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-target');
+        closeModal(modalId);
+      });
+    });
+
+    window.addEventListener('click', function(e) {
+      document.querySelectorAll('.modal').forEach(function(modal) {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
