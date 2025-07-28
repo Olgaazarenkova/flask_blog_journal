@@ -59,8 +59,14 @@
         .note-title {
             font-weight: 700;
             font-size: 1.2em;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             color: #244b4a;
+        }
+        .note-subtitle {
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 8px;
+            color: #37675a;
         }
         .note-text {
             white-space: pre-wrap;
@@ -87,6 +93,9 @@
         <label for="title">Заголовок записи</label>
         <input type="text" id="title" name="title" required maxlength="100" placeholder="Введите заголовок" />
 
+        <label for="subtitle">Подзаголовок записи</label>
+        <input type="text" id="subtitle" name="subtitle" maxlength="200" placeholder="Введите подзаголовок (необязательно)" />
+
         <label for="text">Текст записи</label>
         <textarea id="text" name="text" required placeholder="Введите текст записи"></textarea>
 
@@ -95,10 +104,13 @@
 
     {% if notes %}
         <div class="notes-list">
-            {% for title, text in notes.items() %}
+            {% for note in notes %}
                 <article class="note">
-                    <div class="note-title">{{ title }}</div>
-                    <div class="note-text">{{ text }}</div>
+                    <div class="note-title">{{ note.title }}</div>
+                    {% if note.subtitle %}
+                    <div class="note-subtitle">{{ note.subtitle }}</div>
+                    {% endif %}
+                    <div class="note-text">{{ note.text }}</div>
                 </article>
             {% endfor %}
         </div>
